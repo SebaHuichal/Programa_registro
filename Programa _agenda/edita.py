@@ -5,7 +5,7 @@
 def editar_contacto(agenda):
     
     print("\n--- EDITAR CONTACTO ---")
-    # Reutilizamos lógica de búsqueda simple para encontrar a quien editar
+    ## Reutilizamos lógica de búsqueda simple para encontrar a quien editar
     nombre_buscar = input("Ingrese el nombre exacto del contacto a editar: ")
     
     for contacto in agenda:

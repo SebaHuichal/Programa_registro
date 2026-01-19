@@ -1,5 +1,5 @@
 # --- ARCHIVO: main.py ---
-# 1. AGREGAMOS 'mostrar_contactos' A LA IMPORTACIÓN
+## Creamos el archivo principal, este será el cerebro del problema.
 from agrega import agregar_contacto
 from busca import buscar_contacto
 from edita import editar_contacto
@@ -17,7 +17,7 @@ def main():
         "2": buscar_contacto,
         "3": editar_contacto,
         "4": eliminar_contacto,
-        "5": mostrar_contactos  # Nueva opción vinculada a la función
+        "5": mostrar_contactos  
     }
 
     print("¡Bienvenido al Sistema de Gestión de Contactos!")
@@ -28,7 +28,7 @@ def main():
         print("2. Buscar contacto")
         print("3. Editar contacto")
         print("4. Eliminar contacto")
-        print("5. Ver todos los contactos") # 3. ACTUALIZAMOS EL TEXTO DEL MENÚ
+        print("5. Ver todos los contactos")
         print("6. Salir")
         
         opcion = input("Seleccione una opción: ")
