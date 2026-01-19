@@ -19,14 +19,3 @@ def eliminar_contacto(agenda):
 
     print(" No se encontró el contacto.")
     
-def mostrar_contactos(agenda):
-    """
-    Muestra todos los contactos guardados en la agenda.
-    """
-    print("\n--- LISTA COMPLETA ---")
-    if not agenda:
-        print("(La agenda está vacía)")
-    else:
-        for contacto in agenda:
-            # Al hacer print(contacto), Python usa automáticamente el __str__ de la Clase
-            print(contacto)
