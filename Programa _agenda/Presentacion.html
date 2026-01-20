@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Contactos - Python</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CONFIGURACIÓN BASE */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1e1e1e;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  place-items: center;
+  font-family: 'Urbanist', sans-serif;
+}
+
+/* 2. CONTENEDOR DE DIAPOSITIVA */
+.slide-container {
+  background-color: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+  color: #f8fafc;
+}
+
+.slide-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+.slide-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3. TIPOGRAFÍA */
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+h1 { font-size: 72px; line-height: 1.1; margin-bottom: 10px; }
+h2.slide-title { font-size: 48px; margin-bottom: 40px; color: #38bdf8; width: 100%; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+h3 { font-size: 28px; color: #fbbf24; margin-bottom: 15px; }
+
+p, li {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 15px;
+}
+
+/* 4. DISEÑOS (LAYOUTS) */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+}
+
+.two-column-tiled {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.tile {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.rounded-image-layout {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.image-wrapper {
+  flex: 0 0 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #38bdf8;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-wrapper img {
+  width: 70%;
+  height: auto;
+}
+
+.image-right-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.terminal-mockup {
+  background-color: #000;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  font-family: 'Fira Code', monospace;
+  height: 400px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.terminal-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #10b981; }
+
+.meta-info {
+  margin-top: 50px;
+  font-size: 20px;
+  color: #94a3b8;
+}
+
+ul { list-style: none; padding: 0; }
+ul li::before {
+  content: '>';
+  color: #38bdf8;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.cursor { animation: blink 1s infinite; }
+
+    </style>
+</head>
+<body>
+
+<!-- Diapositiva 1: Portada -->
+<div class="slide-container">
+    <div class="content-area">
+        <div class="rounded-image-layout">
+            <div class="text-content">
+                <h1>Sistema de Gestión de Contactos</h1>
+                <div class="meta-info">
+                    <strong>Nombre:</strong> Sebastián Huichal<br>
+                    <strong>Fecha:</strong> Enero 2026
+                </div>
+            </div>
+            <div class="image-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diapositiva 2: El Desafío y La Solución -->
+<div class="slide-container">
+    <h2 class="slide-title">Introducción al Proyecto</h2>
+    <div class="content-area">
+        <div class="two-column-tiled">
+            <div class="tile">
+                <h3>Problemática</h3>
+                <p>La necesidad de gestionar una agenda de contactos de manera eficiente, estructurada y persistente desde una interfaz de consola.</p>
+            </div>
+            <div class="tile">
+                <h3>Solución</h3>
+                <p>Desarrollo de una aplicación utilizando Python, aplicando principios de ingeniería de software para asegurar un código limpio y mantenible y escalable.</p>
+                <h3 style="margin-top:20px; font-size: 22px;">Puntos Clave:</h3>
+                <ul style="font-size: 18px;">
+                    <li>Gestión de datos en memoria.</li>
+                    <li>Interfaz de usuario basada en texto.</li>
+                    <li>Validación de entradas.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diapositiva 3: Arquitectura Técnica -->
+<div class="slide-container">
+    <h2 class="slide-title">Diseño y Arquitectura Modular</h2>
+    <div class="content-area">
+        <p>El sistema no es un script monolítico; se diseñó bajo una Arquitectura Modular para facilitar la escalabilidad.</p>
+        
+        <div class="two-column-tiled" style="margin-top: 30px;">
+            <div>
+                <h3>Tecnologías:</h3>
+                <ul>
+                    <li>Lenguaje: Python</li>
+                    <li>Paradigma: Programación Orientada a Objetos (POO).</li>
+                    <li>Estructuras de Datos: Listas y Diccionarios.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Estructura de Archivos:</h3>
+                <ul>
+                    <li><strong>Main.py:</strong> Controlador principal.</li>
+                    <li><strong>datos.py:</strong> Modelo de la clase Contacto.</li>
+                    <li><strong>Módulos:</strong> agrega, busca, edita, elimina.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diapositiva 4: Funcionalidades -->
+<div class="slide-container">
+    <h2 class="slide-title">Funcionalidades Principales</h2>
+    <div class="content-area">
+        <div class="image-right-layout">
+            <div class="text-col">
+                <p>El sistema implementa el ciclo completo CRUD (Create, Read, Update, Delete):</p>
+                <ul style="font-size: 19px;">
+                    <li><strong>Registrar:</strong> Validación e inserción de objetos Contacto.</li>
+                    <li><strong>Buscar:</strong> Búsqueda flexible (insensible a mayúsculas/minúsculas) por nombre o teléfono.</li>
+                    <li><strong>Editar:</strong> Actualización selectiva de atributos.</li>
+                    <li><strong>Eliminar:</strong> Borrado seguro con confirmación (s/n).</li>
+                </ul>
+            </div>
+            <div class="terminal-mockup">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <div style="color: #10b981; font-size: 16px;">
+                    $ python Main.py<br><br>
+                    === MENÚ DE CONTACTOS ===<br>
+                    1. Registrar Contacto<br>
+                    2. Buscar Contacto<br>
+                    3. Editar Contacto<br>
+                    4. Eliminar Contacto<br>
+                    5. Salir<br><br>
+                    Opción: <span class="cursor">_</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diapositiva 5: Calidad y Pruebas -->
+<div class="slide-container">
+    <h2 class="slide-title">Aseguramiento de Calidad (QA)</h2>
+    <div class="content-area">
+        <div class="image-right-layout">
+            <div class="text-col">
+                <p>Para garantizar la robustez del código, se implementó una estrategia de pruebas mixta.</p>
+                <ul>
+                    <li><strong>Pruebas Unitarias:</strong> Uso de unittest para validar la integridad de la Clase Contacto.</li>
+                    <li><strong>Pruebas Funcionales:</strong> Validación manual de flujos de usuario y manejo de errores.</li>
+                </ul>
+                <div style="margin-top: 30px; border-left: 4px solid #38bdf8; padding-left: 20px;">
+                    <h3>Conclusión:</h3>
+                    <p style="font-size: 18px;">El proyecto cumple con los estándares requeridos, entregando un código estable, documentado y fácil de mantener.</p>
+                </div>
+            </div>
+            <div class="terminal-mockup">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <div style="color: #f8fafc; font-size: 15px;">
+                    test_registro_exitoso ... ok<br>
+                    test_validacion_datos ... ok<br>
+                    test_formato_salida ... ok<br><br>
+                    ----------------------------------<br>
+                    Ran 3 tests in 0.002s<br><br>
+                    <span style="color: #10b981; font-weight: bold;">OK</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
